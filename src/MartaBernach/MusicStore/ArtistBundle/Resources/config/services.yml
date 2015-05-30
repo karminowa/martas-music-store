@@ -2,3 +2,14 @@ services:
 #    marta_bernach_music_store_artist.example:
 #        class: MartaBernach\MusicStore\ArtistBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+    marta_bernach_music_store_artist.admin.artist:
+        class: MartaBernach\MusicStore\ArtistBundle\Admin\ArtistAdmin
+        arguments: [~, MartaBernach\MusicStore\ArtistBundle\Entity\Artist, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Artist}
+
+    marta_bernach_music_store_artist.admin.artist_photo:
+        class: MartaBernach\MusicStore\ArtistBundle\Admin\ArtistPhotoAdmin
+        arguments: [~, MartaBernach\MusicStore\ArtistBundle\Entity\ArtistPhoto, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: ArtistPhoto}
