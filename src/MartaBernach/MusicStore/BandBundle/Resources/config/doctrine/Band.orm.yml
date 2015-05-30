@@ -1,0 +1,36 @@
+MartaBernach\MusicStore\BandBundle\Entity\Band:
+    type: entity
+    table: bands
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    oneToMany:
+        albums:
+            targetEntity: MartaBernach\MusicStore\AlbumsBundle\Entity\Album
+            mappedBy: band
+        members:
+            targetEntity: BandMember
+            mappedBy: band
+    fields:
+        name:
+            type: string
+            length: 255
+        slug:
+            type: string
+            length: 255
+        formed:
+            type: integer
+        originCountry:
+            type: string
+            length: 255
+            column: origin_country
+        originCity:
+            type: string
+            length: 255
+            column: origin_city
+        biography:
+            type: text
+    lifecycleCallbacks: {  }

@@ -1,0 +1,24 @@
+MartaBernach\MusicStore\ArtistBundle\Entity\ArtistPhoto:
+    type: entity
+    table: artists_photos
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+        artist:
+            targetEntity: Artist
+            inversedBy: photos
+            joinColumn:
+                name: artist_id
+                referencedColumnName: id
+    fields:
+        file:
+            type: string
+            length: 255
+        fileSize:
+            type: integer
+            column: file_size
+    lifecycleCallbacks: {  }

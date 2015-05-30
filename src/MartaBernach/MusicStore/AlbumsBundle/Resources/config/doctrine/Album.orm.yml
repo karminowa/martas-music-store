@@ -1,0 +1,36 @@
+MartaBernach\MusicStore\AlbumsBundle\Entity\Album:
+    type: entity
+    table: albums
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+        band:
+            targetEntity: MartaBernach\MusicStore\BandBundle\Entity\Band
+            inversedBy: albums
+            joinColumn:
+                name: band_id
+                referencedColumnName: id
+    oneToMany:
+        tracks:
+            targetEntity: AlbumTrack
+            mappedBy: album
+        covers:
+            targetEntity: AlbumCover
+            mappedBy: album
+    fields:
+        name:
+            type: string
+            length: 255
+        slug:
+            type: string
+            length: 255
+        releaseDate:
+            type: date
+            column: release_date
+        summary:
+            type: text
+    lifecycleCallbacks: {  }

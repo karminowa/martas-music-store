@@ -1,0 +1,25 @@
+MartaBernach\MusicStore\AlbumsBundle\Entity\AlbumTrack:
+    type: entity
+    table: albums_tracks
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+        album:
+            targetEntity: Album
+            inversedBy: tracks
+            joinColumn:
+                name: album_id
+                referencedColumnName: id
+    fields:
+        name:
+            type: string
+            length: 255
+        duration:
+            type: time
+        rank:
+            type: integer
+    lifecycleCallbacks: {  }

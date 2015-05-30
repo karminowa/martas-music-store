@@ -1,0 +1,26 @@
+MartaBernach\MusicStore\AlbumsBundle\Entity\AlbumCover:
+    type: entity
+    table: albums_covers
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+        album:
+            targetEntity: Album
+            inversedBy: covers
+            joinColumn:
+                name: album_id
+                referencedColumnName: id
+    fields:
+        file:
+            type: string
+            length: 255
+        size:
+            type: integer
+        type:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

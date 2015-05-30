@@ -1,0 +1,29 @@
+MartaBernach\MusicStore\BandBundle\Entity\BandMember:
+    type: entity
+    table: bands_members
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+        band:
+            targetEntity: Band
+            inversedBy: members
+            joinColumn:
+                name: band_id
+                referencedColumnName: id
+        artist:
+            targetEntity: MartaBernach\MusicStore\ArtistBundle\Entity\Artist
+            inversedBy: band_member
+            joinColumn:
+                name: artist_id
+                referencedColumnName: id
+    fields:
+        role:
+            type: string
+            length: 255
+        former:
+            type: boolean
+    lifecycleCallbacks: {  }
