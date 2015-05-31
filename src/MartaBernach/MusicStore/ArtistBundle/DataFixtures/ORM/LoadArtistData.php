@@ -10,6 +10,7 @@ use MartaBernach\MusicStore\BandBundle\Entity\Band;
 use MartaBernach\MusicStore\BandBundle\Entity\BandMember;
 use MartaBernach\MusicStore\AlbumsBundle\Entity\Album;
 use MartaBernach\MusicStore\AlbumsBundle\Entity\AlbumTrack;
+use MartaBernach\MusicStore\AlbumsBundle\Entity\AlbumCover;
 use \DateTime;
 
 class LoadArtistData implements FixtureInterface
@@ -94,6 +95,9 @@ class LoadArtistData implements FixtureInterface
                     'name' => 'Fire',
                     'releaseDate' => 1993,
                     'summary' => 'Pierwszy studyjny album polskiej grupy muzycznej Hey. Wydawnictwo zrealizowano w składzie: Katarzyna Nosowska (śpiew, słowa), Piotr Banach (gitara, muzyka), Jacek Chrzanowski (gitara basowa), Robert Ligiewicz (perkusja) oraz Marcin Żabiełowicz (gitara), ponadto gościnnie w 8 utworze zaśpiewała Edyta Bartosiewicz, a w 18 zaśpiewał Andrzej "Kobra" Kraiński. Album muzycznie w stylu rocka i grunge.',
+                    'covers' => array(
+                        'hey/fire.jpg'
+                    ),
                     'tracks' => array(
                         array(
                             'name' => 'One of Them',
@@ -216,6 +220,7 @@ class LoadArtistData implements FixtureInterface
     );
 
     /**
+     *
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
@@ -240,6 +245,12 @@ class LoadArtistData implements FixtureInterface
                         if (isset($album['tracks']) and !empty($album['tracks'])) {
                             foreach ($album['tracks'] as $track) {
                                 $trackObject = $this->addAlbumTrack($albumObject, $track);
+                            }
+                        }
+
+                        if (isset($album['covers']) and !empty($album['covers'])) {
+                            foreach ($album['covers'] as $cover) {
+                                $coverObject = $this->addAlbumCover($albumObject, $cover);
                             }
                         }
                     }
@@ -316,6 +327,27 @@ class LoadArtistData implements FixtureInterface
         $this->manager->flush();
 
         return $trackObject;
+    }
+
+    private function addAlbumCover($albumObject, $cover)
+    {
+        // /home/k3nsei/Projects/martas-music-store/src/MartaBernach/MusicStore/ArtistBundle/DataFixtures/ORM/../../../../../../web/uploads/covers/
+        $coverBasePath = __DIR__ . '/../../../AlbumsBundle/Resources/covers/' . $cover;
+        $coverNewPath = __DIR__ . '/../../../../../../web/uploads/covers/' . str_replace('/', '-', $cover);
+        $coverDbPath = 'uploads/covers/' . str_replace('/', '-', $cover);
+
+        copy($coverBasePath, $coverNewPath);
+
+        $coverObject = new AlbumCover();
+        $coverObject->setAlbum($albumObject);
+        $coverObject->setFile($coverDbPath);
+        $coverObject->setSize(filesize($coverBasePath));
+        $coverObject->setType('large');
+
+        $this->manager->persist($coverObject);
+        $this->manager->flush();
+
+        return $coverObject;
     }
 
     private function formatReleaseDate($year = 1900, $month = 0, $day = 0) {
