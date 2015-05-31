@@ -9,3 +9,6 @@
 /composer.phar
 #/vendor/
 /web/bundles/
+
+/web/uploads/*
+!/web/upload/covers/.gitkeep
