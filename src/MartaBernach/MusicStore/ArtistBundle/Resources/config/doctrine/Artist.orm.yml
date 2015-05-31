@@ -19,9 +19,20 @@ MartaBernach\MusicStore\ArtistBundle\Entity\Artist:
             type: string
             length: 255
             column: stage_name
+            nullable: true
+            options:
+                default: null
         slug:
             type: string
             length: 255
+            gedmo:
+                slug:
+                    updatable: true
+                    unique: true
+                    fields:
+                        - stageName
+                        - firstName
+                        - lastName
         firstName:
             type: string
             length: 255
@@ -32,4 +43,19 @@ MartaBernach\MusicStore\ArtistBundle\Entity\Artist:
             column: last_name
         biography:
             type: text
+            nullable: true
+            options:
+                default: null
+        createdAt:
+            type: datetime
+            column: created_at
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            column: updated_at
+            gedmo:
+                timestampable:
+                    on: update
     lifecycleCallbacks: {  }

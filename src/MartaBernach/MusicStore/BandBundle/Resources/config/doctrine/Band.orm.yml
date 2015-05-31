@@ -21,6 +21,12 @@ MartaBernach\MusicStore\BandBundle\Entity\Band:
         slug:
             type: string
             length: 255
+            gedmo:
+                slug:
+                    updatable: true
+                    unique: true
+                    fields:
+                        - name
         formed:
             type: integer
         originCountry:
@@ -33,4 +39,19 @@ MartaBernach\MusicStore\BandBundle\Entity\Band:
             column: origin_city
         biography:
             type: text
+            nullable: true
+            options:
+                default: null
+        createdAt:
+            type: datetime
+            column: created_at
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            column: updated_at
+            gedmo:
+                timestampable:
+                    on: update
     lifecycleCallbacks: {  }

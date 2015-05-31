@@ -18,6 +18,20 @@ MartaBernach\MusicStore\AlbumsBundle\Entity\AlbumTrack:
         name:
             type: string
             length: 255
+        slug:
+            type: string
+            length: 255
+            gedmo:
+                slug:
+                    updatable: true
+                    unique: true
+                    fields:
+                        - name
+                    handlers:
+                        Gedmo\Sluggable\Handler\RelativeSlugHandler:
+                            relationField: album
+                            relationSlugField: slug
+                            separator: /
         duration:
             type: time
         rank:
