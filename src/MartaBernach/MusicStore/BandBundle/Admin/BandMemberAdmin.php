@@ -17,6 +17,7 @@ class BandMemberAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
+            ->add('artist')
             ->add('role')
             ->add('former')
         ;
@@ -29,6 +30,9 @@ class BandMemberAdmin extends Admin
     {
         $listMapper
             ->add('id')
+            ->add('artist', null, array(
+                'label' => 'Muzyk'
+            ))
             ->add('role')
             ->add('former')
             ->add('_action', 'actions', array(
@@ -47,9 +51,16 @@ class BandMemberAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
-            ->add('role')
-            ->add('former')
+            ->add('artist', null, array(
+                'label' => 'Muzyk'
+            ))
+            ->add('role', null, array(
+                'label' => 'Rola w zespole'
+            ))
+            ->add('former', null, array(
+                'required' => false,
+                'label' => 'Były członek'
+            ))
         ;
     }
 
@@ -60,6 +71,7 @@ class BandMemberAdmin extends Admin
     {
         $showMapper
             ->add('id')
+            ->add('artist')
             ->add('role')
             ->add('former')
         ;

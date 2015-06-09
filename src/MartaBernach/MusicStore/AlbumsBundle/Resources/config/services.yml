@@ -1,21 +1,18 @@
 services:
-#    marta_bernach_music_store_albums.example:
-#        class: MartaBernach\MusicStore\AlbumsBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
     marta_bernach_music_store_albums.admin.album:
         class: MartaBernach\MusicStore\AlbumsBundle\Admin\AlbumAdmin
         arguments: [~, MartaBernach\MusicStore\AlbumsBundle\Entity\Album, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: admin, label: Album}
-
-    marta_bernach_music_store_albums.admin.album_cover:
-        class: MartaBernach\MusicStore\AlbumsBundle\Admin\AlbumCoverAdmin
-        arguments: [~, MartaBernach\MusicStore\AlbumsBundle\Entity\AlbumCover, SonataAdminBundle:CRUD]
-        tags:
-            - {name: sonata.admin, manager_type: orm, group: admin, label: AlbumCover}
+            - {name: sonata.admin, manager_type: orm, group: Albumy, label: Album}
 
     marta_bernach_music_store_albums.admin.album_track:
         class: MartaBernach\MusicStore\AlbumsBundle\Admin\AlbumTrackAdmin
         arguments: [~, MartaBernach\MusicStore\AlbumsBundle\Entity\AlbumTrack, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: admin, label: AlbumTrack}
+            - {name: sonata.admin, manager_type: orm, group: admin, label: AlbumTrack, show_in_dashboard: false}
+
+    marta_bernach_music_store_albums.admin.album_cover:
+        class: MartaBernach\MusicStore\AlbumsBundle\Admin\AlbumCoverAdmin
+        arguments: [~, MartaBernach\MusicStore\AlbumsBundle\Entity\AlbumCover, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: AlbumCover, show_in_dashboard: false}

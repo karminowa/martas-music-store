@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use DateTime;
 
 class AlbumTrackAdmin extends Admin
 {
@@ -17,9 +18,16 @@ class AlbumTrackAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
-            ->add('name')
-            ->add('duration')
-            ->add('rank')
+            ->add('slug')
+            ->add('rank', null, array(
+                'label' => 'Numer na liście'
+            ))
+            ->add('name', null, array(
+                'label' => 'Nazwa'
+            ))
+            ->add('duration', null, array(
+                'label' => 'Czas trwania'
+            ))
         ;
     }
 
@@ -29,10 +37,17 @@ class AlbumTrackAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
-            ->add('name')
-            ->add('duration')
-            ->add('rank')
+            ->addIdentifier('id')
+            ->addIdentifier('slug')
+            ->add('rank', null, array(
+                'label' => 'Numer na liście'
+            ))
+            ->add('name', null, array(
+                'label' => 'Nazwa'
+            ))
+            ->add('duration', null, array(
+                'label' => 'Czas trwania'
+            ))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -49,10 +64,22 @@ class AlbumTrackAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
-            ->add('name')
-            ->add('duration')
-            ->add('rank')
+            ->add('rank', null, array(
+                'label' => 'Numer na liście',
+                'attr' => array(
+                    'min' => 1,
+                    'max' => 99
+                )
+            ))
+            ->add('name', null, array(
+                'label' => 'Nazwa'
+            ))
+            ->add('duration', null, array(
+                'label' => 'Czas trwania',
+                'widget' => 'single_text',
+                'with_minutes' => true,
+                'with_seconds' => true
+            ))
         ;
     }
 
@@ -63,9 +90,24 @@ class AlbumTrackAdmin extends Admin
     {
         $showMapper
             ->add('id')
-            ->add('name')
-            ->add('duration')
-            ->add('rank')
+            ->add('slug')
+            ->add('rank', null, array(
+                'label' => 'Numer na liście'
+            ))
+            ->add('name', null, array(
+                'label' => 'Nazwa'
+            ))
+            ->add('duration', 'time', array(
+                'label' => 'Czas trwania'
+            ))
         ;
+    }
+
+    public function getNewInstance()
+    {
+        $instance = parent::getNewInstance();
+        $instance->setRank(1);
+
+        return $instance;
     }
 }

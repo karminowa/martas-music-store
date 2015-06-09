@@ -40,6 +40,16 @@ class Artist
     private $biography;
 
     /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $photos;
@@ -184,6 +194,52 @@ class Artist
     }
 
     /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Artist
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Artist
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
      * Add photos
      *
      * @param \MartaBernach\MusicStore\ArtistBundle\Entity\ArtistPhoto $photos
@@ -248,60 +304,10 @@ class Artist
     {
         return $this->band_member;
     }
-    /**
-     * @var \DateTime
-     */
-    private $createdAt;
 
-    /**
-     * @var \DateTime
-     */
-    private $updatedAt;
-
-
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     * @return Artist
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime 
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     * @return Artist
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime 
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
+    public function __toString() {
+        $stageName = $this->getStageName();
+        $combinedName = $this->getFirstName() . ' ' . $this->getLastName();
+        return (!empty($stageName)) ? $stageName : $combinedName;
     }
 }

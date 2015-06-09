@@ -11,9 +11,11 @@ MartaBernach\MusicStore\BandBundle\Entity\Band:
         albums:
             targetEntity: MartaBernach\MusicStore\AlbumsBundle\Entity\Album
             mappedBy: band
+            cascade: ["all"]
         members:
             targetEntity: BandMember
             mappedBy: band
+            cascade: ["all"]
     fields:
         name:
             type: string

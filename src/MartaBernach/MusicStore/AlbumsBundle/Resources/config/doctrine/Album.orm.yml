@@ -18,9 +18,11 @@ MartaBernach\MusicStore\AlbumsBundle\Entity\Album:
         tracks:
             targetEntity: AlbumTrack
             mappedBy: album
+            cascade: ["all"]
         covers:
             targetEntity: AlbumCover
             mappedBy: album
+            cascade: ["all"]
     fields:
         name:
             type: string

@@ -17,11 +17,16 @@ class ArtistAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
-            ->add('stageName')
             ->add('slug')
-            ->add('firstName')
-            ->add('lastName')
-            ->add('biography')
+            ->add('stageName', null, array(
+                'label' => 'Pseudonim'
+            ))
+            ->add('firstName', null, array(
+                'label' => 'Imię'
+            ))
+            ->add('lastName', null, array(
+                'label' => 'Nazwisko'
+            ))
         ;
     }
 
@@ -31,12 +36,26 @@ class ArtistAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
-            ->add('stageName')
-            ->add('slug')
-            ->add('firstName')
-            ->add('lastName')
-            ->add('biography')
+            ->addIdentifier('id')
+            ->addIdentifier('slug')
+            ->add('stageName', null, array(
+                'label' => 'Pseudonim'
+            ))
+            ->add('firstName', null, array(
+                'label' => 'Imię'
+            ))
+            ->add('lastName', null, array(
+                'label' => 'Nazwisko'
+            ))
+            ->add('biography', null, array(
+                'label' => 'Opis'
+            ))
+            ->add('createdAt', null, array(
+                'label' => 'Utworzony'
+            ))
+            ->add('updatedAt', null, array(
+                'label' => 'Aktualizowany'
+            ))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -53,12 +72,25 @@ class ArtistAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
-            ->add('stageName')
-            ->add('slug')
-            ->add('firstName')
-            ->add('lastName')
-            ->add('biography')
+            ->add('stageName', null, array(
+                'required' => false,
+                'label' => 'Pseudonim'
+            ))
+            ->add('firstName', null, array(
+                'required' => true,
+                'label' => 'Imię'
+            ))
+            ->add('lastName', null, array(
+                'required' => true,
+                'label' => 'Nazwisko'
+            ))
+            ->add('biography', 'textarea', array(
+                'required' => false,
+                'label' => 'Opis',
+                'attr' => array(
+                    'rows' => 15
+                )
+            ))
         ;
     }
 
@@ -69,11 +101,25 @@ class ArtistAdmin extends Admin
     {
         $showMapper
             ->add('id')
-            ->add('stageName')
             ->add('slug')
-            ->add('firstName')
-            ->add('lastName')
-            ->add('biography')
+            ->add('stageName', null, array(
+                'label' => 'Pseudonim'
+            ))
+            ->add('firstName', null, array(
+                'label' => 'Imię'
+            ))
+            ->add('lastName', null, array(
+                'label' => 'Nazwisko'
+            ))
+            ->add('biography', null, array(
+                'label' => 'Opis'
+            ))
+            ->add('createdAt', null, array(
+                'label' => 'Utworzony'
+            ))
+            ->add('updatedAt', null, array(
+                'label' => 'Aktualizowany'
+            ))
         ;
     }
 }

@@ -38,7 +38,7 @@ class BandMember
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -61,7 +61,7 @@ class BandMember
     /**
      * Get role
      *
-     * @return string 
+     * @return string
      */
     public function getRole()
     {
@@ -84,7 +84,7 @@ class BandMember
     /**
      * Get former
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getFormer()
     {
@@ -107,7 +107,7 @@ class BandMember
     /**
      * Get band
      *
-     * @return \MartaBernach\MusicStore\BandBundle\Entity\Band 
+     * @return \MartaBernach\MusicStore\BandBundle\Entity\Band
      */
     public function getBand()
     {
@@ -130,10 +130,16 @@ class BandMember
     /**
      * Get artist
      *
-     * @return \MartaBernach\MusicStore\ArtistBundle\Entity\Artist 
+     * @return \MartaBernach\MusicStore\ArtistBundle\Entity\Artist
      */
     public function getArtist()
     {
         return $this->artist;
+    }
+
+    public function __toString()
+    {
+        $artist = $this->getArtist();
+        return ((!empty($artist)) ? $artist->__toString() : '');
     }
 }

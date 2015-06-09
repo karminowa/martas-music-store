@@ -20,6 +20,11 @@ class AlbumTrack
     private $name;
 
     /**
+     * @var string
+     */
+    private $slug;
+
+    /**
      * @var \DateTime
      */
     private $duration;
@@ -66,6 +71,29 @@ class AlbumTrack
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return AlbumTrack
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
@@ -136,32 +164,8 @@ class AlbumTrack
     {
         return $this->album;
     }
-    /**
-     * @var string
-     */
-    private $slug;
 
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return AlbumTrack
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
+    public function __toString() {
+        return $this->getRank() . '. ' . $this->getName();
     }
 }

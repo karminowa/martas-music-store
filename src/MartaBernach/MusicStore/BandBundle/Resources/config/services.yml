@@ -1,15 +1,12 @@
 services:
-#    marta_bernach_music_store_band.example:
-#        class: MartaBernach\MusicStore\BandBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
     marta_bernach_music_store_band.admin.band:
         class: MartaBernach\MusicStore\BandBundle\Admin\BandAdmin
         arguments: [~, MartaBernach\MusicStore\BandBundle\Entity\Band, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: admin, label: Band}
+            - {name: sonata.admin, manager_type: orm, group: Zespoły, label: Zespół}
 
     marta_bernach_music_store_band.admin.band_member:
         class: MartaBernach\MusicStore\BandBundle\Admin\BandMemberAdmin
         arguments: [~, MartaBernach\MusicStore\BandBundle\Entity\BandMember, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: admin, label: BandMember}
+            - {name: sonata.admin, manager_type: orm, group: admin, label: BandMember, show_in_dashboard: false}

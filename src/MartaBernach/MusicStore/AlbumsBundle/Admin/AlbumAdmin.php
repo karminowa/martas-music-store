@@ -17,11 +17,16 @@ class AlbumAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
-            ->add('name')
             ->add('slug')
-            ->add('releaseDate')
-            ->add('summary')
-        ;
+            ->add('name', null, array(
+                'label' => 'Nazwa'
+            ))
+            ->add('releaseDate', null, array(
+                'label' => 'Rok wydania'
+            ))
+            ->add('summary', null, array(
+                'label' => 'Opis'
+            ));
     }
 
     /**
@@ -30,19 +35,27 @@ class AlbumAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
-            ->add('name')
-            ->add('slug')
-            ->add('releaseDate')
-            ->add('summary')
+            ->addIdentifier('id')
+            ->addIdentifier('slug')
+            ->add('band', null, array(
+                'label' => 'Zespół'
+            ))
+            ->add('name', null, array(
+                'label' => 'Nazwa'
+            ))
+            ->add('releaseDate', null, array(
+                'label' => 'Rok wydania'
+            ))
+            ->add('summary', null, array(
+                'label' => 'Opis'
+            ))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -51,12 +64,29 @@ class AlbumAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
-            ->add('name')
-            ->add('slug')
-            ->add('releaseDate')
-            ->add('summary')
-        ;
+            ->add('band', null, array(
+                'label' => 'Zespół'
+            ))
+            ->add('name', null, array(
+                'required' => true,
+                'label' => 'Nazwa'
+            ))
+            ->add('releaseDate', 'date', array(
+                'required' => true,
+                'label' => 'Rok wydania',
+                'widget' => 'single_text',
+                'years' => range(1000, 2500)
+            ))
+            ->add('summary', 'textarea', array(
+                'required' => false,
+                'label' => 'Opis'
+            ))
+            ->add('tracks', 'sonata_type_collection', array(
+                'label' => 'Piosenki'
+            ), array(
+                'edit' => 'inline',
+                'inline' => 'table'
+            ));
     }
 
     /**
@@ -66,10 +96,47 @@ class AlbumAdmin extends Admin
     {
         $showMapper
             ->add('id')
-            ->add('name')
             ->add('slug')
-            ->add('releaseDate')
-            ->add('summary')
-        ;
+            ->add('band', null, array(
+                'label' => 'Zespół'
+            ))
+            ->add('name', null, array(
+                'label' => 'Nazwa'
+            ))
+            ->add('releaseDate', null, array(
+                'label' => 'Rok wydania'
+            ))
+            ->add('summary', null, array(
+                'label' => 'Opis'
+            ))
+            ->add('tracks', null, array(
+                'label' => 'Piosenki'
+            ))
+            ->add('createdAt', null, array(
+                'label' => 'Dodano'
+            ))
+            ->add('updatedAt', null, array(
+                'label' => 'Aktualizowano'
+            ));
+    }
+
+    public function prePersist($object)
+    {
+        $tracks = $object->getTracks();
+        if (!empty($tracks)) {
+            foreach ($tracks as $track) {
+                $track->setAlbum($object);
+            }
+        }
+    }
+
+    public function preUpdate($object)
+    {
+        $tracks = $object->getTracks();
+        if (!empty($tracks)) {
+            foreach ($tracks as $track) {
+                $track->setAlbum($object);
+            }
+        }
     }
 }
