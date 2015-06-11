@@ -22,7 +22,7 @@
             <ul class="list-group">
             {% for member in band.members %}
                 <li class="list-group-item">
-                    {% if member.artist.stageName %}{{ member.artist.stageName }}{% else %}{{ member.artist.firstName }} {{ member.artist.lastName }}{% endif %}{% if member.former %} <span class="label label-danger">Były członek</span>{% endif %}
+                    {% if member.artist.stageName %}{{ member.artist.firstName }} ({{ member.artist.stageName }}) {{ member.artist.lastName }}{% else %}{{ member.artist.firstName }} {{ member.artist.lastName }}{% endif %}{% if member.former %} <span class="label label-danger">Były członek</span>{% endif %} <span class="badge">{{ member.role }}</span>
                 </li>
             {% endfor %}
             </ul>
