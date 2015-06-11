@@ -23,6 +23,17 @@ MartaBernach\MusicStore\AlbumsBundle\Entity\Album:
             targetEntity: AlbumCover
             mappedBy: album
             cascade: ["all"]
+    manyToMany:
+        genres:
+            targetEntity: MartaBernach\MusicStore\GenresBundle\Entity\Genre
+            joinTable:
+                name: albums_to_genres
+                joinColumns:
+                    album_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    genre_id:
+                        referencedColumnName: id
     fields:
         name:
             type: string

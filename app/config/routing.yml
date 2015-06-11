@@ -1,3 +1,11 @@
+marta_bernach_music_store_genres:
+    resource: "@MartaBernachMusicStoreGenresBundle/Resources/config/routing.yml"
+    prefix:   /
+
+marta_bernach_music_store_frontend:
+    resource: "@MartaBernachMusicStoreFrontendBundle/Resources/config/routing.yml"
+    prefix:   /
+
 marta_bernach_music_store_band:
     resource: "@MartaBernachMusicStoreBandBundle/Resources/config/routing.yml"
     prefix:   /

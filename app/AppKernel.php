@@ -31,6 +31,8 @@ class AppKernel extends Kernel
             new MartaBernach\MusicStore\AlbumsBundle\MartaBernachMusicStoreAlbumsBundle(),
             new MartaBernach\MusicStore\ArtistBundle\MartaBernachMusicStoreArtistBundle(),
             new MartaBernach\MusicStore\BandBundle\MartaBernachMusicStoreBandBundle(),
+            new MartaBernach\MusicStore\FrontendBundle\MartaBernachMusicStoreFrontendBundle(),
+            new MartaBernach\MusicStore\GenresBundle\MartaBernachMusicStoreGenresBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

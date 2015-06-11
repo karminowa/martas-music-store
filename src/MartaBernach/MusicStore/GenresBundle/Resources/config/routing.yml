@@ -1,0 +1,3 @@
+marta_bernach_music_store_genres_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: MartaBernachMusicStoreGenresBundle:Default:index }

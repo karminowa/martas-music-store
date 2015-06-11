@@ -1,0 +1,29 @@
+{% extends 'MartaBernachMusicStoreFrontendBundle::base.html.twig' %}
+
+{% block content %}
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Witaj!</h1>
+            <p>Jest to bazowy projekt sklepu muzycznego.</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    {% if (bands is defined) and (bands is not empty) %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Zespoły</h3>
+            </div>
+            <div class="panel-body">
+                <ul>
+                    {% for band in bands %}
+                        <li>
+                            <a href="{{ path('front_band', {'slug': band.slug}) }}">{{ band.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

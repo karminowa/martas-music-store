@@ -65,7 +65,7 @@ class BandAdmin extends Admin
                 'required' => true,
                 'label' => 'Nazwa',
                 'attr' => array(
-                    'maxlength' => 2
+                    'pattern' => '.{2,255}'
                 )
             ))
             ->add('formed', null, array(
@@ -82,14 +82,14 @@ class BandAdmin extends Admin
                 'required' => true,
                 'label' => 'Kraj Pochodzenia',
                 'attr' => array(
-                    'maxlength' => 3
+                    'pattern' => '.{3,255}'
                 )
             ))
             ->add('originCity', null, array(
                 'required' => true,
                 'label' => 'Miejsce Pochodzenia',
                 'attr' => array(
-                    'maxlength' => 3
+                    'pattern' => '.{3,255}'
                 )
             ))
             ->add('biography', 'textarea', array(

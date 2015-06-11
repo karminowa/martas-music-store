@@ -1,0 +1,11 @@
+front_index:
+    path:     /
+    defaults: { _controller: MartaBernachMusicStoreFrontendBundle:Main:index }
+
+front_band:
+    path:     /band/{slug}
+    defaults: { _controller: MartaBernachMusicStoreFrontendBundle:Main:band }
+
+front_album:
+    path:     /album/{slug}
+    defaults: { _controller: MartaBernachMusicStoreFrontendBundle:Main:album }

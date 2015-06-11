@@ -26,6 +26,9 @@ class AlbumAdmin extends Admin
             ))
             ->add('summary', null, array(
                 'label' => 'Opis'
+            ))
+            ->add('genres', null, array(
+                'label' => 'Gatunek'
             ));
     }
 
@@ -81,6 +84,10 @@ class AlbumAdmin extends Admin
                 'required' => false,
                 'label' => 'Opis'
             ))
+            ->add('genres', null, array(
+                'required' => false,
+                'label' => 'Gatunki'
+            ))
             ->add('tracks', 'sonata_type_collection', array(
                 'label' => 'Piosenki'
             ), array(
@@ -109,6 +116,9 @@ class AlbumAdmin extends Admin
             ->add('summary', null, array(
                 'label' => 'Opis'
             ))
+            ->add('genres', null, array(
+                'label' => 'Gatunki'
+            ))
             ->add('tracks', null, array(
                 'label' => 'Piosenki'
             ))
@@ -122,6 +132,10 @@ class AlbumAdmin extends Admin
 
     public function prePersist($object)
     {
+        $name = trim($object->getName());
+        if($name === '?') {
+            $object->setSlug('question-mark');
+        }
         $tracks = $object->getTracks();
         if (!empty($tracks)) {
             foreach ($tracks as $track) {
@@ -132,6 +146,10 @@ class AlbumAdmin extends Admin
 
     public function preUpdate($object)
     {
+        $name = trim($object->getName());
+        if($name === '?') {
+            $object->setSlug('question-mark');
+        }
         $tracks = $object->getTracks();
         if (!empty($tracks)) {
             foreach ($tracks as $track) {

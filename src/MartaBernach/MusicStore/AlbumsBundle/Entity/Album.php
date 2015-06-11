@@ -304,4 +304,42 @@ class Album
     {
         return $this->band;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $genres;
+
+
+    /**
+     * Add genres
+     *
+     * @param \MartaBernach\MusicStore\GenresBundle\Entity\Genre $genres
+     * @return Album
+     */
+    public function addGenre(\MartaBernach\MusicStore\GenresBundle\Entity\Genre $genres)
+    {
+        $this->genres[] = $genres;
+
+        return $this;
+    }
+
+    /**
+     * Remove genres
+     *
+     * @param \MartaBernach\MusicStore\GenresBundle\Entity\Genre $genres
+     */
+    public function removeGenre(\MartaBernach\MusicStore\GenresBundle\Entity\Genre $genres)
+    {
+        $this->genres->removeElement($genres);
+    }
+
+    /**
+     * Get genres
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGenres()
+    {
+        return $this->genres;
+    }
 }

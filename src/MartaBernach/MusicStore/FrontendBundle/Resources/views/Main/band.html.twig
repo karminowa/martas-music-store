@@ -1,0 +1,55 @@
+{% extends 'MartaBernachMusicStoreFrontendBundle:Main:index.html.twig' %}
+
+{% block content %}
+    <h2>{{ band.name }}</h2>
+
+    <ul class="list-group">
+        <li class="list-group-item">
+            <b>Rok utworzenia:</b> {{ band.formed }}
+        </li>
+        <li class="list-group-item">
+            <b>Kraj pochodzenia:</b> {{ band.originCountry }}
+        </li>
+        <li class="list-group-item">
+            <b>Miejsce pochodzenia:</b> {{ band.originCountry }}
+        </li>
+        <li class="list-group-item">
+            <b>Kraj Pochodzenia:</b> {{ band.originCity }}
+        </li>
+        {% if band.members is not empty %}
+        <li class="list-group-item">
+            <h4>Członkowie:</h4>
+            <ul class="list-group">
+            {% for member in band.members %}
+                <li class="list-group-item">
+                    {% if member.artist.stageName %}{{ member.artist.stageName }}{% else %}{{ member.artist.firstName }} {{ member.artist.lastName }}{% endif %}{% if member.former %} <span class="label label-danger">Były członek</span>{% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+        </li>
+        {% endif %}
+        {% if band.albums is not empty %}
+        <li class="list-group-item">
+            <h4>Albumy:</h4>
+            <ul class="list-group">
+                {% for album in band.albums %}
+                <li class="list-group-item">
+                    <a href="{{ path('front_album', {'slug': (album.slug|replace({'/': '.'}))}) }}">{{ album.name }}</a>
+                    {% if album.genres is not empty %}
+                        {% for genre in album.genres %}
+                            <span class="label label-primary">{{ genre }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endif %}
+        <li class="list-group-item">
+            <h4>Opis:</h4>
+            <p>
+                {{ band.biography }}
+            </p>
+        </li>
+    </ul>
+{% endblock %}
