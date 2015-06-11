@@ -1,7 +1,7 @@
 {% extends 'MartaBernachMusicStoreFrontendBundle:Main:index.html.twig' %}
 
 {% block content %}
-    <h2>{{ album.band }} - {{ album.name }}</h2>
+    <h2><a href="{{ path('front_band', {'slug': album.band.slug}) }}">{{ album.band.name }}</a> - {{ album.name }}</h2>
 
     <ul class="list-group">
         <li class="list-group-item">
