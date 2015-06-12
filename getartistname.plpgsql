@@ -1,0 +1,8 @@
+CREATE OR REPLACE FUNCTION "public"."getartistname" ("fname" character varying, "lname" character varying, "sname" character varying) RETURNS text AS 'BEGIN
+  IF sname IS NULL OR sname = ''''
+  THEN
+    out_name := concat(fname, '' '', lname);
+  ELSE
+    out_name := concat(fname, '' ('', sname, '') '', lname);
+  END IF;
+END;' LANGUAGE "plpgsql"
